@@ -28,4 +28,7 @@ clean:
 copy: $(BUILD_DIR)/test.vcbmem
 	cp $(BUILD_DIR)/test.vcbmem /mnt/g/Project/fun/rv32i/rv32i.vcbmem
 
+get-vcb:
+	cp /mnt/g/Project/fun/rv32i/rv32i.vcb .
+
 .PHONY: all clean copy disasm
