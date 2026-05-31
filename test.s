@@ -1,7 +1,46 @@
+.section .rodata
+.balign 4
+lw_test_const:
+    .word 0x8234868A
+
 .section .text
 .global _start
 
 _start:
+# #test lw
+#     addi a0, a0, 1 # test counter
+#     la t0, lw_test_const
+#     lw t1, 0(t0)
+#     li t2, 0x8234868A
+#     bne t1, t2, error
+
+# #test lh
+#     addi a0, a0, 1 # test counter
+#     la t0, lw_test_const
+#     lh t1, 0(t0)
+#     li t2, 0xFFFF868A
+#     bne t1, t2, error
+
+# #test lb
+#     addi a0, a0, 1 # test counter
+#     la t0, lw_test_const
+#     lb t1, 0(t0)
+#     li t2, 0xFFFFFF8A
+#     bne t1, t2, error
+
+# #test lhu
+#     addi a0, a0, 1 # test counter
+#     la t0, lw_test_const
+#     lhu t1, 0(t0)
+#     li t2, 0x0000868A
+#     bne t1, t2, error
+
+# #test lbu
+#     addi a0, a0, 1 # test counter
+#     la t0, lw_test_const
+#     lbu t1, 0(t0)
+#     li t2, 0x0000008A
+#     bne t1, t2, error
 
 # #test or
 #     addi a0, a0, 1 # test counter
