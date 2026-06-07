@@ -11,6 +11,15 @@ SECTIONS
   } > RAM
 
   . = ALIGN(4);
+  .rodata : { *(.rodata*) } > RAM
+
+  . = ALIGN(4);
   .data : { *(.data*) } > RAM
-  .bss  : { *(.bss*) } > RAM
+
+  . = ALIGN(4);
+  _sbss = .;
+  .bss : { *(.bss*) } > RAM
+  _ebss = .;
+
+  _sstack = ORIGIN(RAM) + LENGTH(RAM);
 }
