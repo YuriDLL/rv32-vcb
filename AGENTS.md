@@ -25,7 +25,8 @@
 ## Key Quirks
 - `bin_to_vcbmem.py` converts flat binary to big-endian 32-bit words (VCB VMem format)
 - `linker.ld`: text origin at 0x0, entry at 0x4 (first 4 bytes reserved)
-- `sb`/`sh`/`sw` (store), `jalr`, and branch compare inversions (`blt`/`bge`/`bltu`/`bgeu`) are NOT yet implemented
+- `jalr` and branch compare inversions (`blt`/`bge`/`bltu`/`bgeu`) are NOT yet implemented
+- `sb`/`sh`/`sw` only support **word-aligned** (multiple of 4) addresses — no halfword/byte alignment
 - `fence` and `scall` not implemented; `sbreak` (ebreak) is
 - `lb` has known issues with large addresses
 

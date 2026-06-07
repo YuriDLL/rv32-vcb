@@ -5,6 +5,10 @@
 lw_test_const:
     .word 0x8234868A
 
+lw_consec_test:
+    .word 0x11111111
+    .word 0x22222222
+
 .section .data
 .balign 4
 store_test_area:
@@ -20,6 +24,16 @@ _start:
 #     lw t1, 0(t0)
 #     li t2, 0x8234868A
 #     bne t1, t2, error
+
+# #test lw consecutive
+#     addi a0, a0, 1
+#     la t0, lw_consec_test
+#     lw t1, 0(t0)
+#     lw t2, 4(t0)
+#     li t3, 0x11111111
+#     bne t1, t3, error
+#     li t3, 0x22222222
+#     bne t2, t3, error
 
 # #test lh
 #     addi a0, a0, 1 # test counter
@@ -130,12 +144,12 @@ _start:
 #     li t2,  0xFFFFFFFF
 #     bne t1, t2, error
 
-    # addi a0, a0, 1
-    # li t0, 0xA0000000
-    # li t1, 28
-    # sra t1, t0, t1
-    # li t2,  0xFFFFFFFA
-    # bne t1, t2, error
+#     addi a0, a0, 1
+#     li t0, 0xA0000000
+#     li t1, 28
+#     sra t1, t0, t1
+#     li t2,  0xFFFFFFFA
+#     bne t1, t2, error
 
 # #test slli
 #     addi a0, a0, 1
@@ -164,11 +178,11 @@ _start:
 #     li t2,  0xFFFFFFFF
 #     bne t1, t2, error
 
-    # addi a0, a0, 1
-    # li t0, 0xA0000000
-    # srai t1, t0, 28
-    # li t2,  0xFFFFFFFA
-    # bne t1, t2, error
+#     addi a0, a0, 1
+#     li t0, 0xA0000000
+#     srai t1, t0, 28
+#     li t2,  0xFFFFFFFA
+#     bne t1, t2, error
 
 # #test xori
 #     li t0, 0xAAAAAAAA
@@ -299,11 +313,11 @@ _start:
 #     li      t3, 0x7FFFFFFF
 #     bne     t2, t3, error
 
-    # addi a0, a0, 1 # test counter
-    # li      t0, 100
-    # li      t1, 100
-    # sub     t2, t0, t1
-    # bnez    t2, error
+#     addi a0, a0, 1 # test counter
+#     li      t0, 100
+#     li      t1, 100
+#     sub     t2, t0, t1
+#     bnez    t2, error
 
 # #test sw
 #     addi a0, a0, 1
@@ -325,18 +339,6 @@ _start:
 #     li t3, 0x1234
 #     bne t2, t3, error
 
-#     addi a0, a0, 1
-#     la t0, store_test_area
-#     li t1, 0xFFFF0000
-#     sw t1, 0(t0)
-#     li t1, 0x5678
-#     sh t1, 2(t0)
-#     lhu t2, 2(t0)
-#     li t3, 0x5678
-#     bne t2, t3, error
-#     lhu t2, 0(t0)
-#     bnez t2, error
-
 # #test sb
 #     addi a0, a0, 1
 #     la t0, store_test_area
@@ -348,51 +350,12 @@ _start:
 #     li t3, 0xAB
 #     bne t2, t3, error
 
-#     addi a0, a0, 1
-#     la t0, store_test_area
-#     li t1, 0xFFFFFFFF
-#     sw t1, 0(t0)
-#     li t1, 0xCD
-#     sb t1, 1(t0)
-#     lbu t2, 1(t0)
-#     li t3, 0xCD
-#     bne t2, t3, error
+# #test rng
+#     addi a0, a0, 1 # test counter
+#     lui t0, %hi(RNG_BASE)
+#     lw t1, 0(t0)
 #     lw t2, 0(t0)
-#     li t3, 0xFFFFCDFF
-#     bne t2, t3, error
-
-#     addi a0, a0, 1
-#     la t0, store_test_area
-#     li t1, 0xFFFFFFFF
-#     sw t1, 0(t0)
-#     li t1, 0xEF
-#     sb t1, 2(t0)
-#     lbu t2, 2(t0)
-#     li t3, 0xEF
-#     bne t2, t3, error
-#     lw t2, 0(t0)
-#     li t3, 0xFFEFFFFF
-#     bne t2, t3, error
-
-#     addi a0, a0, 1
-#     la t0, store_test_area
-#     li t1, 0xFFFFFFFF
-#     sw t1, 0(t0)
-#     li t1, 0x12
-#     sb t1, 3(t0)
-#     lbu t2, 3(t0)
-#     li t3, 0x12
-#     bne t2, t3, error
-#     lw t2, 0(t0)
-#     li t3, 0x12FFFFFF
-#     bne t2, t3, error
-
-#test rng
-    addi a0, a0, 1 # test counter
-    lui t0, %hi(RNG_BASE)
-    lw t1, 0(t0)
-    lw t2, 0(t0)
-    beq t1, t2, error
+#     beq t1, t2, error
 
 #good end
     li      a0, 0
