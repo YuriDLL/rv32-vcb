@@ -236,6 +236,26 @@ _start:
 #     addi    t4, t4, -4
 #     bne     ra, t4, error
 
+# #test jalr
+#     addi a0, a0, 1 # test counter
+#     la      t0, test_jalr_target
+#     jalr    ra, t0, 0
+#     j       error
+# test_jalr_target:
+#     la      t4, test_jalr_target
+#     addi    t4, t4, -4
+#     bne     ra, t4, error
+
+#     addi a0, a0, 1 # test counter
+#     la      t0, test_jalr_target2
+#     addi    t0, t0, -8
+#     jalr    ra, t0, 8
+#     j       error
+# test_jalr_target2:
+#     la      t4, test_jalr_target2
+#     addi    t4, t4, -4
+#     bne     ra, t4, error
+
 # # test lui, addi
 #     lui     t0, 0xfffff
 #     addi    t0, t0, 2047

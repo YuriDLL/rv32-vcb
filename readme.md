@@ -18,7 +18,7 @@ supported | instruction | note
 | + | lui
 | + | auipc
 | + | jal
-| - | jalr
+| + | jalr
 | + | beq
 | + | bne
 | - | blt
