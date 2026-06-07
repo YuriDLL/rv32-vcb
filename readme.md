@@ -21,10 +21,10 @@ supported | instruction | note
 | + | jalr
 | + | beq
 | + | bne
-| - | blt
-| - | bge
-| - | bltu
-| - | bgeu
+| + | blt
+| + | bge
+| + | bltu
+| + | bgeu
 | + | lb | word-aligned only
 | + | lh | word-aligned only
 | + | lw | word-aligned only
@@ -52,8 +52,6 @@ supported | instruction | note
 | + | sra
 | + | or
 | + | and
-| - | fence
-| - | scall
 | + | sbreak
 
 possible bug in pc 2 adder 

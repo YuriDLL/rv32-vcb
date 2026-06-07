@@ -377,6 +377,111 @@ _start:
 #     lw t2, 0(t0)
 #     beq t1, t2, error
 
+# #test blt
+#     addi a0, a0, 1
+#     li      t0, 1
+#     li      t1, 5
+#     sub     zero, t0, t1
+#     blt     t0, t1, .+8
+#     j       error
+
+#     addi a0, a0, 1
+#     li      t0, 5
+#     li      t1, 1
+#     blt     t0, t1, error
+
+#     addi a0, a0, 1
+#     li      t0, -5
+#     li      t1, 1
+#     blt     t0, t1, .+8
+#     j       error
+
+#     addi a0, a0, 1
+#     li      t0, 1
+#     li      t1, -5
+#     blt     t0, t1, error
+
+# #test bge
+#     addi a0, a0, 1
+#     li      t0, 5
+#     li      t1, 1
+#     bge     t0, t1, .+8
+#     j       error
+
+#     addi a0, a0, 1
+#     li      t0, 1
+#     li      t1, 5
+#     bge     t0, t1, error
+
+#     addi a0, a0, 1
+#     li      t0, -1
+#     li      t1, -5
+#     bge     t0, t1, .+8
+#     j       error
+
+#     addi a0, a0, 1
+#     li      t0, -5
+#     li      t1, -1
+#     bge     t0, t1, error
+
+#     addi a0, a0, 1
+#     li      t0, 5
+#     li      t1, 5
+#     bge     t0, t1, .+8
+#     j       error
+
+# #test bltu
+#     addi a0, a0, 1
+#     li      t0, 1
+#     li      t1, 5
+#     bltu    t0, t1, .+8
+#     j       error
+
+#     addi a0, a0, 1
+#     li      t0, 5
+#     li      t1, 1
+#     bltu    t0, t1, error
+
+#     addi a0, a0, 1
+#     li      t0, -5
+#     li      t1, 1
+#     bltu    t0, t1, error
+
+#     addi a0, a0, 1
+#     li      t0, 1
+#     li      t1, -5
+#     bltu    t0, t1, .+8
+#     j       error
+
+# #test bgeu
+#     addi a0, a0, 1
+#     li      t0, 5
+#     li      t1, 1
+#     bgeu    t0, t1, .+8
+#     j       error
+
+#     addi a0, a0, 1
+#     li      t0, 1
+#     li      t1, 5
+#     bgeu    t0, t1, error
+
+#     addi a0, a0, 1
+#     li      t0, -1
+#     li      t1, 1
+#     bgeu    t0, t1, .+8
+#     j       error
+
+#     addi a0, a0, 1
+#     li      t0, 1
+#     li      t1, -1
+#     bgeu    t0, t1, error
+
+#     addi a0, a0, 1
+#     li      t0, 5
+#     li      t1, 5
+#     bgeu    t0, t1, .+8
+#     j       error
+
 #good end
     li      a0, 0
     j       end
