@@ -1,6 +1,6 @@
 MEMORY
 {
-  RAM : ORIGIN = 0x00000000, LENGTH = 64K
+  RAM : ORIGIN = 0x00000000, LENGTH = 4M
 }
 
 SECTIONS
@@ -10,6 +10,7 @@ SECTIONS
     *(.text*)
   } > RAM
 
-  .data : { *(.data*) }
-  .bss  : { *(.bss*) }
+  . = ALIGN(4);
+  .data : { *(.data*) } > RAM
+  .bss  : { *(.bss*) } > RAM
 }

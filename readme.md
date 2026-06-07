@@ -25,7 +25,7 @@ supported | instruction | note
 | - | bge
 | - | bltu
 | - | bgeu
-| + | lb | problem with big address
+| + | lb
 | + | lh
 | + | lw
 | + | lbu
@@ -55,3 +55,5 @@ supported | instruction | note
 | - | fence
 | - | scall
 | + | sbreak
+
+possible bug in pc 2 adder 
