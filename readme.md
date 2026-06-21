@@ -30,9 +30,9 @@ supported | instruction | note
 | + | lw | word-aligned only
 | + | lbu | word-aligned only
 | + | lhu | word-aligned only
-| + | sb | word-aligned only
-| + | sh | word-aligned only
-| + | sw | word-aligned only
+| + | sb |
+| + | sh |
+| + | sw |
 | + | addi
 | + | slti
 | + | sltiu
