@@ -1,13 +1,12 @@
-#define OUT ((volatile unsigned int *)0x00001000)
+#include <stdio.h>
+#include "console.h"
 
-void main(void) {
-    unsigned int f0 = 0, f1 = 1;
-    OUT[0] = f0;
-    OUT[1] = f1;
-    for (int i = 2; i < 10; i++) {
-        unsigned int fn = f0 + f1;
-        OUT[i] = fn;
-        f0 = f1;
-        f1 = fn;
-    }
+int main(void) {
+    console_init();
+    printf("Hello RV32I!\n");
+    printf("Console %dx%d\n", CONSOLE_COLS, CONSOLE_ROWS);
+    for (int i = 0; i < CONSOLE_ROWS * 2; i++)
+        printf("Line %d\n", i + 1);
+    printf("Scroll test done.\n");
+    return 0;
 }

@@ -2,7 +2,17 @@
 
 Project make for [Virtual Circuit Board game](https://store.steampowered.com/app/1885690/Virtual_Circuit_Board/) .
 
-For compile use riscv64-unknown-elf-gcc version 13.2.0 (13.2.0-11ubuntu1+12)
+## Toolchain setup
+
+```bash
+# Compiler and binutils
+sudo apt install gcc-riscv64-unknown-elf binutils-riscv64-unknown-elf
+
+# C standard library (picolibc — lightweight newlib alternative)
+sudo apt install picolibc-riscv64-unknown-elf
+```
+
+Requires `riscv64-unknown-elf-gcc` (tested with 13.2.0)
 
 For download in game :
 
