@@ -18,50 +18,6 @@ store_test_area:
 .global _start
 
 _start:
-# #test lw
-#     addi a0, a0, 1 # test counter
-#     la t0, lw_test_const
-#     lw t1, 0(t0)
-#     li t2, 0x8234868A
-#     bne t1, t2, error
-
-# #test lw consecutive
-#     addi a0, a0, 1
-#     la t0, lw_consec_test
-#     lw t1, 0(t0)
-#     lw t2, 4(t0)
-#     li t3, 0x11111111
-#     bne t1, t3, error
-#     li t3, 0x22222222
-#     bne t2, t3, error
-
-# #test lh
-#     addi a0, a0, 1 # test counter
-#     la t0, lw_test_const
-#     lh t1, 0(t0)
-#     li t2, 0xFFFF868A
-#     bne t1, t2, error
-
-# #test lb
-#     addi a0, a0, 1 # test counter
-#     la t0, lw_test_const
-#     lb t1, 0(t0)
-#     li t2, 0xFFFFFF8A
-#     bne t1, t2, error
-
-# #test lhu
-#     addi a0, a0, 1 # test counter
-#     la t0, lw_test_const
-#     lhu t1, 0(t0)
-#     li t2, 0x0000868A
-#     bne t1, t2, error
-
-# #test lbu
-#     addi a0, a0, 1 # test counter
-#     la t0, lw_test_const
-#     lbu t1, 0(t0)
-#     li t2, 0x0000008A
-#     bne t1, t2, error
 
 # #test or
 #     addi a0, a0, 1 # test counter
@@ -348,71 +304,223 @@ _start:
 #     li t3, 0xDEADBEEF
 #     bne t2, t3, error
 
-#test sh offset=0
-    addi a0, a0, 1
-    la t0, store_test_area
-    li t1, 0xFFFFFFFF
-    sw t1, 0(t0)
-    li t1, 0x1234
-    sh t1, 0(t0)
-    lw t2, 0(t0)
-    li t3, 0xFFFF1234
-    bne t2, t3, error
+# #test lw
+#     addi a0, a0, 1 # test counter
+#     la t0, lw_test_const
+#     lw t1, 0(t0)
+#     li t2, 0x8234868A
+#     bne t1, t2, error
 
-#test sh offset=2
-    addi a0, a0, 1
-    la t0, store_test_area
-    li t1, 0xFFFFFFFF
-    sw t1, 0(t0)
-    li t1, 0x1234
-    sh t1, 2(t0)
-    lw t2, 0(t0)
-    li t3, 0x1234FFFF
-    bne t2, t3, error
+# #test lw consecutive
+#     addi a0, a0, 1
+#     la t0, lw_consec_test
+#     lw t1, 0(t0)
+#     lw t2, 4(t0)
+#     li t3, 0x11111111
+#     bne t1, t3, error
+#     li t3, 0x22222222
+#     bne t2, t3, error
 
-#test sb offset=0
-    addi a0, a0, 1
-    la t0, store_test_area
-    li t1, 0xFFFFFFFF
-    sw t1, 0(t0)
-    li t1, 0xAB
-    sb t1, 0(t0)
-    lw t2, 0(t0)
-    li t3, 0xFFFFFFAB
-    bne t2, t3, error
+# #test lh offset=0 (sign-ext negative)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lh t2, 0(t0)
+#     li t3, 0xFFFFBEEF
+#     bne t2, t3, error
 
-#test sb offset=1
-    addi a0, a0, 1
-    la t0, store_test_area
-    li t1, 0xFFFFFFFF
-    sw t1, 0(t0)
-    li t1, 0xAB
-    sb t1, 1(t0)
-    lw t2, 0(t0)
-    li t3, 0xFFFFABFF
-    bne t2, t3, error
+# #test lh offset=2 (sign-ext negative)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lh t2, 2(t0)
+#     li t3, 0xFFFFDEAD
+#     bne t2, t3, error
 
-#test sb offset=2
-    addi a0, a0, 1
-    la t0, store_test_area
-    li t1, 0xFFFFFFFF
-    sw t1, 0(t0)
-    li t1, 0xAB
-    sb t1, 2(t0)
-    lw t2, 0(t0)
-    li t3, 0xFFABFFFF
-    bne t2, t3, error
+# #test lh offset=0 (sign-ext positive)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0x12345678
+#     sw t1, 0(t0)
+#     lh t2, 0(t0)
+#     li t3, 0x00005678
+#     bne t2, t3, error
 
-#test sb offset=3
-    addi a0, a0, 1
-    la t0, store_test_area
-    li t1, 0xFFFFFFFF
-    sw t1, 0(t0)
-    li t1, 0xAB
-    sb t1, 3(t0)
-    lw t2, 0(t0)
-    li t3, 0xABFFFFFF
-    bne t2, t3, error
+# #test lhu offset=0
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lhu t2, 0(t0)
+#     li t3, 0x0000BEEF
+#     bne t2, t3, error
+
+# #test lhu offset=2
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lhu t2, 2(t0)
+#     li t3, 0x0000DEAD
+#     bne t2, t3, error
+
+# #test lb offset=0 (sign-ext negative)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lb t2, 0(t0)
+#     li t3, 0xFFFFFFEF
+#     bne t2, t3, error
+
+# #test lb offset=1 (sign-ext negative)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lb t2, 1(t0)
+#     li t3, 0xFFFFFFBE
+#     bne t2, t3, error
+
+# #test lb offset=2 (sign-ext negative)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lb t2, 2(t0)
+#     li t3, 0xFFFFFFAD
+#     bne t2, t3, error
+
+# #test lb offset=3 (sign-ext negative)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lb t2, 3(t0)
+#     li t3, 0xFFFFFFDE
+#     bne t2, t3, error
+
+# #test lb offset=0 (sign-ext positive)
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0x12345678
+#     sw t1, 0(t0)
+#     lb t2, 0(t0)
+#     li t3, 0x00000078
+#     bne t2, t3, error
+
+# #test lbu offset=0
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lbu t2, 0(t0)
+#     li t3, 0x000000EF
+#     bne t2, t3, error
+
+# #test lbu offset=1
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lbu t2, 1(t0)
+#     li t3, 0x000000BE
+#     bne t2, t3, error
+
+# #test lbu offset=2
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lbu t2, 2(t0)
+#     li t3, 0x000000AD
+#     bne t2, t3, error
+
+# #test lbu offset=3
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xDEADBEEF
+#     sw t1, 0(t0)
+#     lbu t2, 3(t0)
+#     li t3, 0x000000DE
+#     bne t2, t3, error
+
+# #test lw offset=4
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xCAFEBABE
+#     sw t1, 4(t0)
+#     lw t2, 4(t0)
+#     li t3, 0xCAFEBABE
+#     bne t2, t3, error
+
+# #test sh offset=0
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xFFFFFFFF
+#     sw t1, 0(t0)
+#     li t1, 0x1234
+#     sh t1, 0(t0)
+#     lw t2, 0(t0)
+#     li t3, 0xFFFF1234
+#     bne t2, t3, error
+
+# #test sh offset=2
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xFFFFFFFF
+#     sw t1, 0(t0)
+#     li t1, 0x1234
+#     sh t1, 2(t0)
+#     lw t2, 0(t0)
+#     li t3, 0x1234FFFF
+#     bne t2, t3, error
+
+# #test sb offset=0
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xFFFFFFFF
+#     sw t1, 0(t0)
+#     li t1, 0xAB
+#     sb t1, 0(t0)
+#     lw t2, 0(t0)
+#     li t3, 0xFFFFFFAB
+#     bne t2, t3, error
+
+# #test sb offset=1
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xFFFFFFFF
+#     sw t1, 0(t0)
+#     li t1, 0xAB
+#     sb t1, 1(t0)
+#     lw t2, 0(t0)
+#     li t3, 0xFFFFABFF
+#     bne t2, t3, error
+
+# #test sb offset=2
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xFFFFFFFF
+#     sw t1, 0(t0)
+#     li t1, 0xAB
+#     sb t1, 2(t0)
+#     lw t2, 0(t0)
+#     li t3, 0xFFABFFFF
+#     bne t2, t3, error
+
+# #test sb offset=3
+#     addi a0, a0, 1
+#     la t0, store_test_area
+#     li t1, 0xFFFFFFFF
+#     sw t1, 0(t0)
+#     li t1, 0xAB
+#     sb t1, 3(t0)
+#     lw t2, 0(t0)
+#     li t3, 0xABFFFFFF
+#     bne t2, t3, error
 
 # #test rng
 #     addi a0, a0, 1 # test counter

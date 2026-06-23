@@ -35,9 +35,7 @@
 ## Key Quirks
 - `bin_to_vcbmem.py` converts flat binary to big-endian 32-bit words (VCB VMem format)
 - `linker.ld`: text origin at 0x0, entry at 0x4 (first 4 bytes reserved); SP at top of 4M RAM
-- `sb`/`sh`/`sw` only support **word-aligned** (multiple of 4) addresses
 - `fence` and `scall` not implemented; `sbreak` (ebreak) is
-- `lb` has known issues with large addresses
 
 ## Other Notes
 - Source files: `crt0.s`, `program.c`, `test.s`; no package manager, no CI, no linter/formatter/typecheck

@@ -25,14 +25,14 @@ supported | instruction | note
 | + | bge
 | + | bltu
 | + | bgeu
-| + | lb | word-aligned only
-| + | lh | word-aligned only
-| + | lw | word-aligned only
-| + | lbu | word-aligned only
-| + | lhu | word-aligned only
-| + | sb |
-| + | sh |
-| + | sw |
+| + | lb
+| + | lh
+| + | lw
+| + | lbu
+| + | lhu
+| + | sb
+| + | sh
+| + | sw
 | + | addi
 | + | slti
 | + | sltiu
