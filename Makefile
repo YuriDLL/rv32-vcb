@@ -4,7 +4,7 @@ VCB_DIR = /mnt/c/project/rv32i/
 
 ASFLAGS = -march=rv32i -mabi=ilp32
 PICOLIBC_SPECS = /usr/lib/picolibc/riscv64-unknown-elf/picolibc.specs
-CFLAGS = -march=rv32i -mabi=ilp32 -mstrict-align -O2 -ffunction-sections -fdata-sections -specs=$(PICOLIBC_SPECS)
+CFLAGS = -march=rv32i -mabi=ilp32 -mstrict-align -O2 -g -ffunction-sections -fdata-sections -specs=$(PICOLIBC_SPECS)
 
 all: $(BUILD_DIR)/program.vcbmem copy
 
@@ -48,11 +48,11 @@ $(BUILD_DIR)/test.bin: $(BUILD_DIR)/test.elf | $(BUILD_DIR)
 $(BUILD_DIR)/test.vcbmem: $(BUILD_DIR)/test.bin | $(BUILD_DIR)
 	python3 bin_to_vcbmem.py $< $@
 
-disasm: $(BUILD_DIR)/program.elf
-	$(RISCV_PREFIX)-objdump -d -M numeric $<
+disasm: $(BUILD_DIR)/program.elf $(BUILD_DIR)
+	$(RISCV_PREFIX)-objdump -S -d -M numeric $< >> $(BUILD_DIR)/disasm.s
 
-disasm-test: $(BUILD_DIR)/test.elf
-	$(RISCV_PREFIX)-objdump -d -M numeric $<
+disasm-test: $(BUILD_DIR)/test.elf $(BUILD_DIR)
+	$(RISCV_PREFIX)-objdump -d -M numeric $< >> $(BUILD_DIR)/disasm.s
 
 clean:
 	rm -rf $(BUILD_DIR)
